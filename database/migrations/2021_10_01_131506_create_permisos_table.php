@@ -15,7 +15,16 @@ class CreatePermisosTable extends Migration
     {
         Schema::create('permisos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('opcion_id');
             $table->timestamps();
+
+            $table->foreign('user_id')
+				  ->references('id')
+				  ->on('users');
+            $table->foreign('opcion_id')
+            ->references('id')
+            ->on('opciones');
         });
     }
 
